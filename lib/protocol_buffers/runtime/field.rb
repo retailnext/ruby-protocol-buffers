@@ -302,7 +302,7 @@ module ProtocolBuffers
       end
 
       def default_value
-        @default_value || @default_value = (@opts[:default] || "").freeze
+        @default_value || @default_value = nil
       end
 
       def deserialize(value)
@@ -365,7 +365,7 @@ module ProtocolBuffers
       end
 
       def default_value
-        @opts[:default] || 0
+        @opts[:default]
       end
 
       private
@@ -540,7 +540,7 @@ module ProtocolBuffers
       end
 
       def default_value
-        @opts[:default] || 0.0
+        @opts[:default]
       end
     end
 
@@ -556,7 +556,7 @@ module ProtocolBuffers
       end
 
       def default_value
-        @opts[:default] || 0.0
+        @opts[:default]
       end
     end
 
@@ -576,7 +576,7 @@ module ProtocolBuffers
       end
 
       def default_value
-        @opts[:default] || false
+        @opts[:default]
       end
     end
 
@@ -597,7 +597,7 @@ module ProtocolBuffers
       end
 
       def default_value
-        @opts[:default] || @valid_values.first
+        @opts[:default]
       end
 
       def value_from_name(name)
