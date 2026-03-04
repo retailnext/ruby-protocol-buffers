@@ -1,5 +1,4 @@
 require 'protocol_buffers/compiler/descriptor.pb'
-require 'shellwords'
 
 module ProtocolBuffers
   class CompileError < StandardError; end
