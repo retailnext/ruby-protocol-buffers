@@ -7,11 +7,13 @@ module ProtocolBuffers
     def self.compile(output_filename, input_files, opts = {})
       input_files = Array(input_files) unless input_files.is_a?(Array)
       raise(ArgumentError, "Need at least one input file") if input_files.empty?
-      other_opts = ""
-      (opts[:include_dirs] || []).each { |d| other_opts += " -I#{d}" }
 
-      cmd = "protoc #{other_opts} -o#{output_filename} #{input_files.join(' ')}"
-      rc = system(cmd)
+      cmd = ["protoc"]
+      (opts[:include_dirs] || []).each { |d| cmd << "-I#{d}" }
+      cmd << "-o#{output_filename}"
+      cmd.concat(input_files)
+
+      rc = system(*cmd)
       raise(CompileError, $?.exitstatus.to_s) unless rc
       true
     end
